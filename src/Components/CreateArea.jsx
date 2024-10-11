@@ -37,10 +37,10 @@ const CreateArea = ({ onAdd }) => {
           value={note.content}
           onChange={handleChange}
         />
+        <Fab onClick={submitNote}>
+          <AddIcon />
+        </Fab>
       </form>
-      <Fab onClick={submitNote}>
-        <AddIcon />
-      </Fab>
     </div>
   );
 };

@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import CreateArea from "./Components/CreateArea";
 import Header from "./Components/Header";
+import Note from "./Components/Note";
 function App() {
   const [notes, setNotes] = useState([]);
   const addNewNote = (newNote) => {
@@ -9,10 +10,26 @@ function App() {
       return [...prevNotes, newNote];
     });
   };
+  const deleteNote = (id) => {
+    setNotes(
+      notes.filter((_, index) => {
+        return index !== id;
+      })
+    );
+  };
   return (
     <>
       <Header />
       <CreateArea onAdd={addNewNote} />
+      {notes.map(({ title, content }, index) => (
+        <Note
+          title={title}
+          content={content}
+          key={index}
+          id={index}
+          onDelete={deleteNote}
+        />
+      ))}
     </>
   );
 }
