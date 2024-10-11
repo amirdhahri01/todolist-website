@@ -2,6 +2,7 @@ import { Fab } from "@mui/material";
 import { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 const CreateArea = ({ onAdd }) => {
+  const [isExpanded, setisExpanded] = useState(false);
   const [note, setNote] = useState({ title: "", content: "" });
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,19 +24,25 @@ const CreateArea = ({ onAdd }) => {
   return (
     <div>
       <form className="create-note">
-        <input
-          type="text"
-          name="title"
-          placeholder="Title"
-          value={note.title}
-          onChange={handleChange}
-        />
+        {isExpanded && (
+          <input
+            type="text"
+            name="title"
+            placeholder="Title"
+            value={note.title}
+            onChange={handleChange}
+          />
+        )}
+
         <textarea
           name="content"
-          rows={3}
+          rows={isExpanded ? 3 : 1}
           placeholder="Take a note..."
           value={note.content}
           onChange={handleChange}
+          onClick={() => {
+            setisExpanded(true);
+          }}
         />
         <Fab onClick={submitNote}>
           <AddIcon />
