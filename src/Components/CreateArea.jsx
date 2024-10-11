@@ -1,6 +1,7 @@
+import { Fab } from "@mui/material";
 import { useState } from "react";
-
-const CreateArea = () => {
+import AddIcon from "@mui/icons-material/Add";
+const CreateArea = ({ onAdd }) => {
   const [note, setNote] = useState({ title: "", content: "" });
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -9,6 +10,14 @@ const CreateArea = () => {
         ...prevNote,
         [name]: value,
       };
+    });
+  };
+  const submitNote = (e) => {
+    e.preventDefault();
+    onAdd(note);
+    setNote({
+      title: "",
+      content: "",
     });
   };
   return (
@@ -29,6 +38,9 @@ const CreateArea = () => {
           onChange={handleChange}
         />
       </form>
+      <Fab onClick={submitNote}>
+        <AddIcon />
+      </Fab>
     </div>
   );
 };
