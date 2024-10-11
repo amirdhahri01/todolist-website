@@ -3,6 +3,7 @@ import "./App.css";
 import CreateArea from "./Components/CreateArea";
 import Header from "./Components/Header";
 import Note from "./Components/Note";
+import Footer from "./Components/Footer";
 function App() {
   const [notes, setNotes] = useState([]);
   const addNewNote = (newNote) => {
@@ -30,6 +31,7 @@ function App() {
           onDelete={deleteNote}
         />
       ))}
+      <Footer />
     </>
   );
 }
